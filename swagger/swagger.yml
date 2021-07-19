@@ -1,0 +1,158 @@
+swagger: "2.0"
+info:
+  title: beego Test API
+  description: beego has a very cool tools to autogenerate documents for your API
+  version: 1.0.0
+  termsOfService: http://beego.me/
+  contact:
+    email: astaxie@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+basePath: /v1
+paths:
+  /estudiante/:
+    get:
+      tags:
+      - estudiante
+      description: get Estudiante
+      operationId: EstudianteController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Estudiante'
+        "404":
+          description: not found resource
+    post:
+      tags:
+      - estudiante
+      description: create Estudiante
+      operationId: EstudianteController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for Estudiante content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Estudiante'
+      responses:
+        "201":
+          description: '{int} models.Estudiante'
+        "400":
+          description: the request contains incorrect syntax
+  /estudiante/{id}:
+    get:
+      tags:
+      - estudiante
+      description: get Estudiante by id
+      operationId: EstudianteController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Estudiante'
+        "404":
+          description: not found resource
+    put:
+      tags:
+      - estudiante
+      description: update the Estudiante
+      operationId: EstudianteController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for Estudiante content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Estudiante'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Estudiante'
+        "400":
+          description: the request contains incorrect syntax
+    delete:
+      tags:
+      - estudiante
+      description: delete the Estudiante
+      operationId: EstudianteController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "404":
+          description: not found resource
+definitions:
+  models.Estudiante:
+    title: Estudiante
+    type: object
+    properties:
+      CodigoMateria:
+        type: number
+        format: double
+      Id:
+        type: integer
+        format: int64
+      Nota1:
+        type: number
+        format: double
+      Nota2:
+        type: number
+        format: double
+      Nota3:
+        type: number
+        format: double
+      NotaDef:
+        type: number
+        format: double
+      UqCodigoEstudiante:
+        type: number
+        format: double
+tags:
+- name: estudiante
+  description: |
+    EstudianteController operations for Estudiante
